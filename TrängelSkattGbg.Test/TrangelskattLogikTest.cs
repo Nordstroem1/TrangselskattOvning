@@ -36,6 +36,28 @@ namespace TrängelSkattGbg.Test
             _outputHelper.WriteLine($"Expected cost: {expectedCost}");
             Assert.Equal(expectedCost, result);
         }
-       
+        [Trait("SkattKalkylator", "CalculateTotalCost")]
+        [Theory]
+        [InlineData("2023-05-31 07:00, 2023-05-31 07:10, 2023-05-31 07:20, 2023-05-31 07:30")]
+        public void RäknaTotalBeloppShouldReturn60kr(string dateString)
+        {
+            int expectedCost = 60;
+            var result = _trangelskattLogik.CalculateCostBasedOnTime(dateString);
+
+            _outputHelper.WriteLine($"Expected cost: {expectedCost}");
+            Assert.Equal(expectedCost, result);
+        } 
+        
+        [Trait("SkattKalkylator", "CalculateTotalCost")]
+        [Theory]
+        [InlineData("2023-05-31 07:00, 2023-05-31 07:10, 2023-05-31 07:20, 2023-05-31 07:30, 2023-05-31 07:00, 2023-05-30 07:10, 2023-05-30 07:20, 2023-05-30 07:30, 2023-05-30 09:35 ")]
+        public void RäknaTotalBeloppShouldReturn120kr(string dateString)
+        {
+            int expectedCost = 120;
+            var result = _trangelskattLogik.CalculateCostBasedOnTime(dateString);
+
+            _outputHelper.WriteLine($"Expected cost: {expectedCost}");
+            Assert.Equal(expectedCost, result);
+        }
     }
 }
