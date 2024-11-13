@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-namespace TrängselskattGBG
+﻿namespace TrängselskattGBG
 {
     public class TrangselSkattLogik
     {
@@ -34,7 +29,7 @@ namespace TrängselskattGBG
             {
                 int dailyCost = 0;
 
-                foreach (var time in totalDays)
+                foreach (var day in totalDays)
                 {
                     foreach (var costTime in costList)
                     {
@@ -42,7 +37,7 @@ namespace TrängselskattGBG
                         var startTime = TimeSpan.Parse(parts[0]);
                         var endTime = TimeSpan.Parse(parts[1]);
                         var costPerHour = int.Parse(parts[2]);
-                        var timeOfDay = time.TimeOfDay;
+                        var timeOfDay = day.TimeOfDay;
 
                         if (timeOfDay >= startTime && timeOfDay <= endTime)
                         {
@@ -66,18 +61,18 @@ namespace TrängselskattGBG
         private static List<string> CreateCostList()
         {
             return new List<string>()
-                {
-                    { "06:00,06:29, 8"},
-                    { "06:30,06:59, 13"},
-                    { "07:00,07:59, 18"},
-                    { "08:00,08:29, 13"},
-                    { "08:30,14:59, 8"},
-                    { "15:00,15:29, 13"},
-                    { "15:30,16:59, 18"},
-                    { "17:00,17:59, 13"},
-                    { "18:00,18:29, 8"},
-                    { "18:30,05:59, 0"}
-                };
+            {
+                { "06:00,06:29, 8"},
+                { "06:30,06:59, 13"},
+                { "07:00,07:59, 18"},
+                { "08:00,08:29, 13"},
+                { "08:30,14:59, 8"},
+                { "15:00,15:29, 13"},
+                { "15:30,16:59, 18"},
+                { "17:00,17:59, 13"},
+                { "18:00,18:29, 8"},
+                { "18:30,05:59, 0"}
+            };
         }
     }
 }
